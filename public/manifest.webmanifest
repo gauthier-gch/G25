@@ -1,0 +1,12 @@
+{
+  "name": "G25 · Les 25 ans",
+  "short_name": "G25",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#cdebfa",
+  "theme_color": "#f39a2b",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

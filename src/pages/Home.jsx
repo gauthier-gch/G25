@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useAuth } from '../AuthContext'
-import { TABS } from '../App'
+import { TABS } from '../tabs'
+import Countdown from '../components/Countdown'
 
 export default function Home() {
   const { user } = useAuth()
@@ -16,15 +17,17 @@ export default function Home() {
         <div className="date-card pink">
           <span className="day">Vendredi</span>
           <span className="num">21</span>
-          <span className="month">mai</span>
+          <span className="month">mai 2027</span>
         </div>
         <span className="arrow" aria-hidden>→</span>
         <div className="date-card blue">
           <span className="day">Dimanche</span>
           <span className="num">23</span>
-          <span className="month">mai</span>
+          <span className="month">mai 2027</span>
         </div>
       </div>
+
+      <Countdown />
 
       <div className="tile-grid">
         {TABS.map((t, i) => (

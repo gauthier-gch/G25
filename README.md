@@ -5,6 +5,14 @@ Site d'organisation du weekend des 25 ans — du vendredi 21 au dimanche 23 mai.
 Stack : Vite + React, authentification Firebase (Google ou email + mot de passe), hébergement Firebase Hosting.
 Une fois connecté sur un appareil, la session est conservée : pas besoin de se reconnecter.
 
+Pensé pour le téléphone : barre d'onglets en bas de l'écran, compte à rebours sur l'accueil,
+et le site peut être ajouté à l'écran d'accueil (Safari : Partager → « Sur l'écran d'accueil »)
+pour s'ouvrir comme une appli.
+
+> Les liens ouverts depuis WhatsApp / Instagram s'affichent dans leur navigateur intégré,
+> où Google refuse la connexion : le site affiche alors un message pour l'ouvrir dans Safari/Chrome
+> (la connexion par email fonctionne partout).
+
 ## Mise en place (une seule fois)
 
 1. Crée un projet sur https://console.firebase.google.com

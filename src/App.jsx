@@ -4,14 +4,7 @@ import Layout from './components/Layout'
 import Login from './pages/Login'
 import Home from './pages/Home'
 import EmptyPage from './pages/EmptyPage'
-
-export const TABS = [
-  { path: '/ville', label: 'La ville', emoji: '🏙️' },
-  { path: '/provisions', label: 'Les provisions', emoji: '🍻' },
-  { path: '/questionnaire', label: 'Le questionnaire', emoji: '📝' },
-  { path: '/tombola', label: 'La tombola', emoji: '🎟️' },
-  { path: '/planning', label: 'Le planning', emoji: '🗓️' },
-]
+import { TABS } from './tabs'
 
 export default function App() {
   const { user, loading } = useAuth()
