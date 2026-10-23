@@ -8,6 +8,7 @@ import {
   updateProfile,
 } from 'firebase/auth'
 import { auth, googleProvider } from '../firebase'
+import { LOGO } from '../logo'
 
 // Google bloque la connexion dans les navigateurs intégrés aux applis
 // (lien ouvert depuis WhatsApp, Instagram, Messenger…)
@@ -80,7 +81,7 @@ export default function Login() {
   return (
     <div className="login">
       <div className="login-card">
-        <img src="/logo.png" alt="G25 – 25 ans !" className="login-logo" />
+        <img src={LOGO} alt="G25 – 25 ans !" className="login-logo" />
         <p className="login-dates">Du vendredi 21 au dimanche 23 mai</p>
 
         {IN_APP_BROWSER && (

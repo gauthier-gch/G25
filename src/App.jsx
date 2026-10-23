@@ -5,6 +5,7 @@ import Login from './pages/Login'
 import Home from './pages/Home'
 import EmptyPage from './pages/EmptyPage'
 import { TABS } from './tabs'
+import { LOGO } from './logo'
 
 export default function App() {
   const { user, loading } = useAuth()
@@ -12,7 +13,7 @@ export default function App() {
   if (loading) {
     return (
       <div className="splash">
-        <img src="/logo.png" alt="G25" className="splash-logo" />
+        <img src={LOGO} alt="G25" className="splash-logo" />
       </div>
     )
   }

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../AuthContext'
 import { TABS } from '../tabs'
 import Countdown from '../components/Countdown'
+import { LOGO } from '../logo'
 
 export default function Home() {
   const { user } = useAuth()
@@ -9,7 +10,7 @@ export default function Home() {
 
   return (
     <section className="home">
-      <img src="/logo.png" alt="G25 – 25 ans !" className="home-logo" />
+      <img src={LOGO} alt="G25 – 25 ans !" className="home-logo" />
       <p className="hello">Salut{firstName ? ` ${firstName}` : ''} ! 🎉</p>
       <h1>Le weekend des 25 ans</h1>
 

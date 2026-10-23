@@ -4,6 +4,7 @@ import { signOut } from 'firebase/auth'
 import { auth } from '../firebase'
 import { useAuth } from '../AuthContext'
 import { TABS } from '../tabs'
+import { LOGO } from '../logo'
 
 const NAV = [{ path: '/', short: 'Accueil', emoji: '🏠' }, ...TABS]
 
@@ -23,7 +24,7 @@ export default function Layout() {
     <div className="app">
       <header className="topbar">
         <NavLink to="/" className="brand">
-          <img src="/logo.png" alt="" />
+          <img src={LOGO} alt="" />
           <span>G25</span>
         </NavLink>
         <button className="avatar" onClick={logout} aria-label="Se déconnecter">
