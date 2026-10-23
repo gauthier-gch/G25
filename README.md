@@ -29,7 +29,7 @@ npm run dev
 
 ## Mise en ligne (GitHub Pages)
 
-Chaque push sur `main` déploie automatiquement le site sur https://gauthier-gch.github.io/g25/
+Chaque push sur `main` déploie automatiquement le site sur https://gauthier-gch.github.io/G25/
 (workflow `.github/workflows/deploy.yml`).
 
 Configuration à faire une seule fois :
