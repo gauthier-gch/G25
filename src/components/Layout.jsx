@@ -5,8 +5,9 @@ import { auth } from '../firebase'
 import { useAuth } from '../AuthContext'
 import { TABS } from '../tabs'
 import { LOGO } from '../logo'
+import { MiniCountdown } from './Countdown'
 
-const NAV = [{ path: '/', short: 'Accueil', emoji: '🏠' }, ...TABS]
+const NAV = [{ path: '/', short: 'Accueil', emoji: '🥳' }, ...TABS]
 
 export default function Layout() {
   const { user } = useAuth()
@@ -27,6 +28,7 @@ export default function Layout() {
           <img src={LOGO} alt="" />
           <span>G25</span>
         </NavLink>
+        <MiniCountdown />
         <button className="avatar" onClick={logout} aria-label="Se déconnecter">
           {user.photoURL ? <img src={user.photoURL} alt="" referrerPolicy="no-referrer" /> : initial}
         </button>

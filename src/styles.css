@@ -2,14 +2,14 @@
   --orange: #f39a2b;
   --orange-deep: #e8590c;
   --maroon: #7a2e2a;
-  --sky: #cdebfa;
-  --sky-light: #eef8fe;
-  --blue: #5bb8f5;
-  --pink: #f7a1c4;
-  --lilac: #c9a0f5;
-  --mint: #98ddb8;
-  --yellow: #ffd54a;
-  --cream: #fff4dc;
+  --sky: #b3e3ff;
+  --sky-light: #e3f5ff;
+  --blue: #3daeff;
+  --pink: #ff8cc6;
+  --lilac: #b88aff;
+  --mint: #5ee3a5;
+  --yellow: #ffd21f;
+  --cream: #fff0c7;
   --ink: #3d2220;
   --radius: 22px;
   --shadow: 0 6px 0 var(--maroon);
@@ -23,12 +23,12 @@ body {
   margin: 0;
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior-y: none;
-  font-family: 'Nunito', system-ui, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   color: var(--ink);
   background:
-    radial-gradient(circle at 10% 10%, #ffe1ef 0, transparent 35%),
-    radial-gradient(circle at 90% 20%, #e4d4ff 0, transparent 35%),
-    radial-gradient(circle at 50% 100%, #fff0c2 0, transparent 45%),
+    radial-gradient(circle at 10% 10%, #ffc7e4 0, transparent 35%),
+    radial-gradient(circle at 90% 20%, #d8c1ff 0, transparent 35%),
+    radial-gradient(circle at 50% 100%, #ffe58f 0, transparent 45%),
     linear-gradient(180deg, var(--sky) 0%, var(--sky-light) 100%);
   background-attachment: fixed;
   min-height: 100vh;
@@ -36,11 +36,11 @@ body {
 }
 
 h1, .brand span {
-  font-family: 'Shrikhand', cursive;
+  font-family: 'Bricolage Grotesque', 'Inter', system-ui, sans-serif;
+  font-weight: 800;
   color: var(--orange);
-  text-shadow: 3px 3px 0 var(--maroon);
-  letter-spacing: 0.5px;
-  font-weight: 400;
+  text-shadow: 2px 2px 0 var(--maroon);
+  letter-spacing: -0.5px;
 }
 
 button { font: inherit; cursor: pointer; touch-action: manipulation; }
@@ -71,17 +71,33 @@ button { font: inherit; cursor: pointer; touch-action: manipulation; }
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 8px;
   padding: calc(14px + env(safe-area-inset-top)) 16px 8px;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 3px solid var(--orange);
 }
-.brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.brand { flex-shrink: 0; display: flex; align-items: center; gap: 8px; text-decoration: none; }
 .brand img { width: 40px; height: 40px; }
 .brand span { font-size: 1.6rem; text-shadow: 2px 2px 0 var(--maroon); }
 
+.mini-cd {
+  flex: 0 1 auto;
+  min-width: 0;
+  padding: 5px 10px;
+  border: 2px solid var(--maroon);
+  border-radius: 999px;
+  background: var(--yellow);
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.mini-cd b { font-weight: 800; }
+
 .avatar {
+  flex-shrink: 0;
   display: grid;
   place-items: center;
   width: 44px;
@@ -105,7 +121,7 @@ button { font: inherit; cursor: pointer; touch-action: manipulation; }
   bottom: 0;
   z-index: 10;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: 1fr 1fr 1.15fr 1.3fr 1fr 1fr;
   padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(10px);
@@ -118,14 +134,15 @@ button { font: inherit; cursor: pointer; touch-action: manipulation; }
   align-items: center;
   gap: 2px;
   min-height: 52px;
-  padding: 6px 0 4px;
+  min-width: 0;
+  padding: 6px 1px 4px;
   border-radius: 14px;
   color: var(--ink);
   text-decoration: none;
   transition: background 0.15s;
 }
 .tab-emoji { font-size: 1.45rem; line-height: 1; transition: transform 0.15s; }
-.tab-label { font-size: 0.66rem; font-weight: 800; letter-spacing: -0.2px; }
+.tab-label { max-width: 100%; overflow: hidden; text-overflow: ellipsis; font-size: clamp(0.55rem, 2.5vw, 0.66rem); font-weight: 700; letter-spacing: -0.3px; }
 .tabbar a.active { background: var(--yellow); }
 .tabbar a.active .tab-emoji { transform: translateY(-2px) scale(1.12); }
 
@@ -157,7 +174,8 @@ button { font: inherit; cursor: pointer; touch-action: manipulation; }
 .date-card.blue { background: var(--blue); transform: rotate(4deg); }
 .date-card .day { font-weight: 800; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; }
 .date-card .num {
-  font-family: 'Shrikhand', cursive;
+  font-family: 'Bricolage Grotesque', 'Inter', system-ui, sans-serif;
+  font-weight: 800;
   font-size: 2.8rem;
   line-height: 1.1;
   color: #fff;
@@ -184,7 +202,8 @@ button { font: inherit; cursor: pointer; touch-action: manipulation; }
   box-shadow: 0 4px 0 var(--maroon);
 }
 .cd-num {
-  font-family: 'Shrikhand', cursive;
+  font-family: 'Bricolage Grotesque', 'Inter', system-ui, sans-serif;
+  font-weight: 800;
   font-size: 1.8rem;
   line-height: 1.1;
   color: var(--orange);
@@ -192,39 +211,9 @@ button { font: inherit; cursor: pointer; touch-action: manipulation; }
   font-variant-numeric: tabular-nums;
 }
 .cd-label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
-.countdown-done { font-family: 'Shrikhand', cursive; font-size: 1.6rem; color: var(--orange-deep); margin: 0 0 28px; }
-
-/* ---------- Tuiles ---------- */
-.tile-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-.tile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  min-height: 110px;
-  padding: 16px 8px;
-  border: 3px solid var(--maroon);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  color: var(--ink);
-  font-weight: 800;
-  text-decoration: none;
-  transition: transform 0.1s, box-shadow 0.1s;
-}
-.tile:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--maroon); }
-.tile:last-child:nth-child(odd) { grid-column: 1 / -1; }
-.tile-emoji { font-size: 2rem; }
-.tile.c0 { background: var(--lilac); }
-.tile.c1 { background: var(--yellow); }
-.tile.c2 { background: var(--mint); }
-.tile.c3 { background: var(--pink); }
-.tile.c4 { background: var(--blue); }
+.countdown-done { font-family: 'Bricolage Grotesque', 'Inter', system-ui, sans-serif; font-weight: 800; font-size: 1.6rem; color: var(--orange-deep); margin: 0 0 28px; }
 
 @media (min-width: 720px) {
-  .tile-grid { grid-template-columns: repeat(5, 1fr); }
-  .tile:last-child:nth-child(odd) { grid-column: auto; }
-  .tile:hover { transform: translateY(-4px) rotate(-1deg); }
   .tab-label { font-size: 0.8rem; }
   .tabbar { padding-left: calc(50% - 360px); padding-right: calc(50% - 360px); }
 }
