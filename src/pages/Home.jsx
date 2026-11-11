@@ -1,6 +1,4 @@
-import { Link } from 'react-router-dom'
 import { useAuth } from '../AuthContext'
-import { TABS } from '../tabs'
 import Countdown from '../components/Countdown'
 import { LOGO } from '../logo'
 
@@ -12,7 +10,7 @@ export default function Home() {
     <section className="home">
       <img src={LOGO} alt="G25 – 25 ans !" className="home-logo" />
       <p className="hello">Salut{firstName ? ` ${firstName}` : ''} ! 🎉</p>
-      <h1>Le weekend des 25 ans</h1>
+      <h1>25 ans du G</h1>
 
       <div className="dates">
         <div className="date-card pink">
@@ -29,15 +27,6 @@ export default function Home() {
       </div>
 
       <Countdown />
-
-      <div className="tile-grid">
-        {TABS.map((t, i) => (
-          <Link key={t.path} to={t.path} className={`tile c${i}`}>
-            <span className="tile-emoji">{t.emoji}</span>
-            {t.label}
-          </Link>
-        ))}
-      </div>
     </section>
   )
 }

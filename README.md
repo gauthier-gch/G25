@@ -45,7 +45,7 @@ GitHub Pages n'est gratuit que pour les repos publics. La config Firebase Web n'
 
 ## Onglets
 
-- La ville
+- La villa
 - Les provisions
 - Le questionnaire
 - La tombola
