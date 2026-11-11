@@ -5,8 +5,8 @@ const PHOTOS = Array.from({ length: 9 }, (_, i) => `${BASE}villa/villa${i + 1}.w
 
 // Lien partagé de la villa
 const MAPS_LINK = 'https://maps.app.goo.gl/RitRKQpVQb79itWG8'
-// Position de la villa pour la carte intégrée : "latitude,longitude" ou adresse
-const VILLA_LOCATION = null
+// Position de la villa pour la carte intégrée
+const VILLA_LOCATION = '48.70505655863707,1.052825196955342'
 const STATION_LINK =
   'https://www.google.com/maps/search/?api=1&query=Gare+de+Verneuil-sur-Avre'
 
@@ -21,18 +21,14 @@ export default function Villa() {
 
       <h2>📍 Accès</h2>
       <div className="card">
-        {VILLA_LOCATION ? (
-          <iframe
-            className="map"
-            title="Carte de la villa"
-            src={`https://maps.google.com/maps?q=${encodeURIComponent(VILLA_LOCATION)}&z=13&output=embed`}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            allowFullScreen
-          />
-        ) : (
-          <div className="map map-empty">Carte bientôt ici 🗺️</div>
-        )}
+        <iframe
+          className="map"
+          title="Carte de la villa"
+          src={`https://maps.google.com/maps?q=${VILLA_LOCATION}&z=12&output=embed`}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          allowFullScreen
+        />
         <a className="btn primary" href={MAPS_LINK} target="_blank" rel="noreferrer">
           Voir sur Google Maps ↗
         </a>
