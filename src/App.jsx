@@ -4,6 +4,7 @@ import Layout from './components/Layout'
 import Login from './pages/Login'
 import Home from './pages/Home'
 import EmptyPage from './pages/EmptyPage'
+import Villa from './pages/Villa'
 import { TABS } from './tabs'
 import { LOGO } from './logo'
 
@@ -24,7 +25,8 @@ export default function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Home />} />
-        {TABS.map((t) => (
+        <Route path="/villa" element={<Villa />} />
+        {TABS.filter((t) => t.path !== '/villa').map((t) => (
           <Route key={t.path} path={t.path} element={<EmptyPage {...t} />} />
         ))}
         <Route path="*" element={<Navigate to="/" replace />} />
