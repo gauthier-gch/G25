@@ -40,7 +40,7 @@ export default function Villa() {
           <span className="way-emoji" aria-hidden>🚗</span>
           <div>
             <b>En voiture</b>
-            <p>Environ 2 h depuis Paris.</p>
+            <p>Environ 2 h depuis Paris !</p>
           </div>
         </div>
         <div className="way">
@@ -50,17 +50,17 @@ export default function Villa() {
             <p>
               Jusqu'à la{' '}
               <a href={STATION_LINK} target="_blank" rel="noreferrer">gare de Verneuil-sur-Avre</a>{' '}
-              (1 h depuis Paris-Montparnasse), puis on vient te chercher en voiture.
+              (1 h depuis Paris-Montparnasse), puis on vient te chercher en voiture !
             </p>
           </div>
         </div>
       </div>
 
-      <div className="tip">
-        <b>💡 Bon plan</b>
+      <div className="callout">
+        <span className="callout-emoji" aria-hidden>💡</span>
         <p>
           Privilégie le <b>covoiturage</b> ! Et si tu viens en train, essaie de <b>grouper les
-          arrivées</b> avec les autres pour limiter les allers-retours de la navette.
+          arrivées</b> avec les autres pour limiter les allers-retours de la navette !
         </p>
       </div>
     </section>

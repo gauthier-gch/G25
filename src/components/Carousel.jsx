@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-const AUTO_MS = 4000 // défilement automatique
+const AUTO_MS = 3000 // défilement automatique
 const PAUSE_MS = 8000 // pause après une action manuelle
 
 export default function Carousel({ images, alt = '' }) {
