@@ -35,6 +35,10 @@ const ERRORS = {
   'auth/weak-password': 'Le mot de passe doit faire au moins 6 caractères.',
   'auth/too-many-requests': 'Trop de tentatives, réessaie dans un moment.',
   'auth/popup-closed-by-user': 'Connexion Google annulée.',
+  'auth/missing-password': 'Il manque le mot de passe.',
+  'auth/operation-not-allowed': "La création de compte par email n'est pas activée (Firebase > Authentication > Sign-in method).",
+  'auth/network-request-failed': 'Pas de connexion internet, réessaie.',
+  'auth/admin-restricted-operation': 'Les inscriptions sont désactivées pour le moment.',
 }
 
 export default function Login() {
@@ -53,7 +57,9 @@ export default function Login() {
     try {
       await fn()
     } catch (e) {
-      setError(ERRORS[e.code] ?? 'Oups, une erreur est survenue.')
+      console.error(e)
+      // le code brut aide à diagnostiquer les erreurs non prévues
+      setError(ERRORS[e.code] ?? `Oups, une erreur est survenue (${e.code || e.message}).`)
     } finally {
       setBusy(false)
     }
