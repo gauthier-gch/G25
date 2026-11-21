@@ -4,7 +4,6 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
-  signInWithRedirect,
   updateProfile,
 } from 'firebase/auth'
 import { auth, googleProvider } from '../firebase'
@@ -16,17 +15,10 @@ const IN_APP_BROWSER = /FBAN|FBAV|Instagram|WhatsApp|Messenger|Snapchat|LinkedIn
   navigator.userAgent,
 )
 
-const signInWithGoogle = async () => {
-  try {
-    await signInWithPopup(auth, googleProvider)
-  } catch (e) {
-    if (e.code === 'auth/popup-blocked' || e.code === 'auth/operation-not-supported-in-this-environment') {
-      await signInWithRedirect(auth, googleProvider)
-    } else {
-      throw e
-    }
-  }
-}
+// Pas de repli sur signInWithRedirect : la page Google passe par <projet>.firebaseapp.com,
+// un autre domaine que le site, et Safari / les navigateurs intégrés isolent son stockage
+// → erreur « missing initial state ». On reste sur la popup uniquement.
+const signInWithGoogle = () => signInWithPopup(auth, googleProvider)
 
 const ERRORS = {
   'auth/invalid-credential': 'Email ou mot de passe incorrect.',
@@ -35,6 +27,15 @@ const ERRORS = {
   'auth/weak-password': 'Le mot de passe doit faire au moins 6 caractères.',
   'auth/too-many-requests': 'Trop de tentatives, réessaie dans un moment.',
   'auth/popup-closed-by-user': 'Connexion Google annulée.',
+  'auth/cancelled-popup-request': 'Connexion Google annulée.',
+  'auth/popup-blocked':
+    'La fenêtre Google a été bloquée : autorise les pop-ups ou connecte-toi avec ton email.',
+  'auth/operation-not-supported-in-this-environment':
+    'Connexion Google impossible ici : ouvre le site dans Safari ou Chrome, ou utilise ton email.',
+  'auth/missing-password': 'Il manque le mot de passe.',
+  'auth/operation-not-allowed': "La création de compte par email n'est pas activée (Firebase > Authentication > Sign-in method).",
+  'auth/network-request-failed': 'Pas de connexion internet, réessaie.',
+  'auth/admin-restricted-operation': 'Les inscriptions sont désactivées pour le moment.',
 }
 
 export default function Login() {
@@ -53,7 +54,9 @@ export default function Login() {
     try {
       await fn()
     } catch (e) {
-      setError(ERRORS[e.code] ?? 'Oups, une erreur est survenue.')
+      console.error(e)
+      // le code brut aide à diagnostiquer les erreurs non prévues
+      setError(ERRORS[e.code] ?? `Oups, une erreur est survenue (${e.code || e.message}).`)
     } finally {
       setBusy(false)
     }
@@ -86,12 +89,13 @@ export default function Login() {
 
         {IN_APP_BROWSER && (
           <p className="warning">
-            Pour te connecter avec Google, ouvre ce lien dans Safari ou Chrome
-            (menu ⋯ → « Ouvrir dans le navigateur »).
+            Google ne fonctionne pas dans le navigateur d'Instagram / WhatsApp : ouvre ce lien
+            dans Safari ou Chrome (menu ⋯ → « Ouvrir dans le navigateur »), ou utilise ton email
+            ci-dessous.
           </p>
         )}
 
-        <button className="btn google" disabled={busy} onClick={() => run(signInWithGoogle)}>
+        <button className="btn google" disabled={busy || IN_APP_BROWSER} onClick={() => run(signInWithGoogle)}>
           <svg viewBox="0 0 48 48" width="20" height="20" aria-hidden>
             <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/>
             <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/>
