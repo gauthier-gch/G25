@@ -18,8 +18,22 @@ pour s'ouvrir comme une appli.
 1. Crée un projet sur https://console.firebase.google.com
 2. **Authentication > Sign-in method** : active **Google** et **Adresse e-mail/Mot de passe**
 3. **Paramètres du projet > Vos applications** : ajoute une application **Web**, puis copie la config
-4. `cp .env.example .env.local` et remplis les valeurs
-5. `npm install`
+4. **Firestore Database** : clique sur **Créer une base de données** (mode production, région `eur3`),
+   puis dans l'onglet **Règles**, colle :
+   ```
+   rules_version = '2';
+   service cloud.firestore {
+     match /databases/{database}/documents {
+       match /users/{uid} {
+         allow read: if request.auth != null;
+         allow write: if request.auth != null && request.auth.uid == uid;
+       }
+     }
+   }
+   ```
+   (sert à stocker la photo de profil choisie depuis le site)
+5. `cp .env.example .env.local` et remplis les valeurs
+6. `npm install`
 
 ## Développement
 
