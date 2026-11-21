@@ -1,23 +1,19 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
-import { signOut } from 'firebase/auth'
-import { auth } from '../firebase'
 import { useAuth } from '../AuthContext'
 import { TABS } from '../tabs'
 import { LOGO } from '../logo'
 import { MiniCountdown } from './Countdown'
+import ProfileModal from './ProfileModal'
 
 const NAV = [{ path: '/', short: 'Accueil', emoji: '🥳' }, ...TABS]
 
 export default function Layout() {
-  const { user } = useAuth()
+  const { user, photo } = useAuth()
   const { pathname } = useLocation()
+  const [profileOpen, setProfileOpen] = useState(false)
 
   useEffect(() => window.scrollTo(0, 0), [pathname])
-
-  const logout = () => {
-    if (window.confirm('Se déconnecter ?')) signOut(auth)
-  }
 
   const initial = (user.displayName || user.email || '?')[0].toUpperCase()
 
@@ -29,10 +25,12 @@ export default function Layout() {
           <span>G25</span>
         </NavLink>
         <MiniCountdown />
-        <button className="avatar" onClick={logout} aria-label="Se déconnecter">
-          {user.photoURL ? <img src={user.photoURL} alt="" referrerPolicy="no-referrer" /> : initial}
+        <button className="avatar" onClick={() => setProfileOpen(true)} aria-label="Mon profil">
+          {photo ? <img src={photo} alt="" referrerPolicy="no-referrer" /> : initial}
         </button>
       </header>
+
+      {profileOpen && <ProfileModal onClose={() => setProfileOpen(false)} />}
 
       <main className="content">
         <Outlet />

@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, GoogleAuthProvider } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
 
 const app = initializeApp({
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -13,3 +14,6 @@ const app = initializeApp({
 export const auth = getAuth(app)
 auth.languageCode = 'fr'
 export const googleProvider = new GoogleAuthProvider()
+
+// Firestore : profils (photo perso dans users/{uid})
+export const db = getFirestore(app)
